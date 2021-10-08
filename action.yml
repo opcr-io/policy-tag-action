@@ -1,0 +1,21 @@
+name: "Policy Tag"
+description: "Tag policy image"
+author: "Aserto Inc."
+branding:
+  icon: tag
+  color: blue
+inputs:
+  source-tag:
+    description: "source tag policy image"
+    required: true
+  target-tag:
+    description: "target tag policy image"
+    required: true
+  verbosity:
+    description: "verbosity level [info|error|debug|trace]"
+    required: true
+    default: error
+runs:
+  using: docker
+  image: 'docker://ghcr.io/opcr-io/policy:0.0'
+  entrypoint: /app/tag.sh
