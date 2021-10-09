@@ -6,13 +6,13 @@ Create tag for target image that refers to source image.
 
 ## Inputs
 
-### `source-tag`
+### `source_tag`
 
 **Required** The source image tag. 
 
 Default: empty
 
-### `target-tag`
+### `target_tag`
 
 **Required** The target image tag. 
 

@@ -5,10 +5,10 @@ branding:
   icon: tag
   color: blue
 inputs:
-  source-tag:
+  source_tag:
     description: "source tag policy image"
     required: true
-  target-tag:
+  target_tag:
     description: "target tag policy image"
     required: true
   verbosity:
