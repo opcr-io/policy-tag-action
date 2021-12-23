@@ -8,8 +8,8 @@ inputs:
   source_tag:
     description: "source tag policy image"
     required: true
-  target_tag:
-    description: "target tag policy image"
+  target_tags:
+    description: "one or more target image tags"
     required: true
   verbosity:
     description: "verbosity level [info|error|debug|trace]"
@@ -17,5 +17,5 @@ inputs:
     default: error
 runs:
   using: docker
-  image: 'docker://ghcr.io/opcr-io/policy:0.0'
+  image: 'docker://ghcr.io/opcr-io/policy:0.1'
   entrypoint: /app/tag.sh

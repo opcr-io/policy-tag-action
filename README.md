@@ -8,13 +8,13 @@ Create tag for target image that refers to source image.
 
 ### `source_tag`
 
-**Required** The source image tag. 
+**Required** The source image tag.
 
 Default: empty
 
-### `target_tag`
+### `target_tags`
 
-**Required** The target image tag. 
+**Required** One or more target image tags.
 
 Default: empty
 
@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     name: build
     steps:
-    
+
     - uses: actions/checkout@v2
 
     - name: Policy Login
@@ -60,20 +60,27 @@ jobs:
 
     - name: Policy Build
       id: policy-build
-      uses: opcr-io/policy-build-action@v1
+      uses: opcr-io/policy-build-action@v2
       with:
         src: peoplefinder/src
-        tag: datadude/peoplefinder:$(sver -n patch) 
+        tag: datadude/peoplefinder
         revision: "$GITHUB_SHA"
+
+    - name: Policy Tag
+      id: policy-tag
+      uses: opcr-io/policy-build-action@v2
+      with:
+        source_tag: datadude/peoplefinder
+        input_tags: datadude/peoplefinder:$(sver -n patch)
 
     - name: Policy Push
       id: policy-push
-      uses: opcr-io/policy-push-action@v1
+      uses: opcr-io/policy-push-action@v2
       with:
-        tag: datadude/peoplefinder:$(sver -n patch)
+        tags: datadude/peoplefinder:$(sver -n patch)
 
     - name: Policy Logout
       id: policy-logout
-      uses: opcr-io/policy-logout-action@v1
+      uses: opcr-io/policy-logout-action@v2
 
 ```
