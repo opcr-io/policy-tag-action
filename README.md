@@ -47,40 +47,42 @@ jobs:
     name: build
     steps:
 
-    - uses: actions/checkout@v2
-
-    - name: Policy Login
+    - 
+      uses: actions/checkout@v7
+    - 
+      name: Policy Login
       id: policy-login
-      uses: opcr-io/policy-login-action@v1
+      uses: opcr-io/policy-login-action@v4
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         username: policy-bot
         password: "$GITHUB_TOKEN"
-
-    - name: Policy Build
+    - 
+      name: Policy Build
       id: policy-build
-      uses: opcr-io/policy-build-action@v2
+      uses: opcr-io/policy-build-action@v4
       with:
         src: peoplefinder/src
-        tag: datadude/peoplefinder
+        tag: demo/peoplefinder
         revision: "$GITHUB_SHA"
-
-    - name: Policy Tag
+    - 
+      name: Policy Tag
       id: policy-tag
-      uses: opcr-io/policy-build-action@v2
+      uses: opcr-io/policy-build-action@v4
       with:
-        source_tag: datadude/peoplefinder
-        input_tags: datadude/peoplefinder:$(sver -n patch)
-
-    - name: Policy Push
+        source_tag: demo/peoplefinder
+        input_tags: demo/peoplefinder:$(svu patch)
+    - 
+      name: Policy Push
       id: policy-push
-      uses: opcr-io/policy-push-action@v2
+      uses: opcr-io/policy-push-action@v4
       with:
-        tags: datadude/peoplefinder:$(sver -n patch)
-
-    - name: Policy Logout
+        tags: demo/peoplefinder:$(svu patch)
+    - 
+      name: Policy Logout
       id: policy-logout
-      uses: opcr-io/policy-logout-action@v2
-
+      uses: opcr-io/policy-logout-action@v4
 ```
+
+> NOTE: The above example leverages the `svu` (semantic version utility) from https://github.com/caarlos0/svu
