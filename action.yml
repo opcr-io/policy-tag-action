@@ -1,6 +1,6 @@
 name: "Policy Tag"
 description: "Tag policy image"
-author: "Aserto Inc."
+author: "gertd@d5s.io"
 branding:
   icon: tag
   color: blue
@@ -17,5 +17,5 @@ inputs:
     default: error
 runs:
   using: docker
-  image: 'docker://ghcr.io/opcr-io/policy:0.2'
+  image: 'docker://ghcr.io/opcr-io/policy:0.4'
   entrypoint: /app/tag.sh
